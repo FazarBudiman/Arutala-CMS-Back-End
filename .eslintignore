@@ -1,0 +1,9 @@
+# tooling / config
+vitest.config.ts
+vitest.setup.ts
+.eslintrc.cjs
+eslint.config.mjs
+
+# deps & build
+node_modules
+dist
