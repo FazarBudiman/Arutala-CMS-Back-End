@@ -15,7 +15,7 @@ export async function up(pgm: MigrationBuilder): Promise<void> {
   ])
 
   pgm.createTable('messages', {
-    id: {
+    messages_id: {
       type: 'uuid',
       primaryKey: true,
       default: pgm.func('gen_random_uuid()')
