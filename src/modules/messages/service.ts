@@ -5,7 +5,7 @@ abstract class MessageService {
     static addMessage = async (payload: MessageCreateProps) => {
         const { rows } = await pool.query(
             `INSERT INTO messages (sender_name, sender_email, organization_name, sender_phone, subject, message_body) 
-                VALUES($1, $2, $3, $4, $5, $6) RETURNING id`,
+                VALUES($1, $2, $3, $4, $5, $6) RETURNING messages_id`,
             [payload.senderName, payload.senderEmail, payload.organizationName, payload.senderPhone, payload.subject, payload.messageBody]
         )
         return rows[0]
@@ -13,7 +13,7 @@ abstract class MessageService {
 
     static getMessages = async () => { 
         const { rows } = await pool.query(
-            `SELECT id, sender_name, sender_email, organization_name, sender_phone, subject, message_body, created_date 
+            `SELECT messages_id, sender_name, sender_email, sender_phone, organization_name, status, subject, message_body, created_date 
                 FROM messages ORDER BY created_date DESC`
 
         )
