@@ -10,6 +10,15 @@ abstract class MessageService {
         )
         return rows[0]
     }
+
+    static getMessages = async () => { 
+        const { rows } = await pool.query(
+            `SELECT id, sender_name, sender_email, organization_name, sender_phone, subject, message_body, created_date 
+                FROM messages ORDER BY created_date DESC`
+
+        )
+        return rows
+    }
 }
 
 export { MessageService }

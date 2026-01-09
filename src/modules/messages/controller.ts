@@ -10,4 +10,12 @@ export class MessageController {
             id: message
         }
     }
+
+    static getMessagesController = async () => {
+        const messages = await MessageService.getMessages()
+        return {
+            status: 'success',
+            data: messages
+        }
+    }
 }
