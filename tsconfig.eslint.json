@@ -3,6 +3,7 @@
   "include": [
     "src",
     ".eslintrc.cjs",
-    "vitest.config.ts"
+    "vitest.config.ts",
+    "migrations/**/*.ts"
   ]
 }

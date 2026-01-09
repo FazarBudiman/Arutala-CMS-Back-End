@@ -15,7 +15,7 @@ export const app = new Elysia()
     )
     
     .onError(({error, code,  set}) => {
-        // console.log(error)
+        console.log(error)
 
         if (code === 'NOT_FOUND') {
             set.status = 404
