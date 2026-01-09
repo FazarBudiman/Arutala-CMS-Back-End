@@ -92,7 +92,7 @@ describe('UserController.deleteUsersController', () => {
     })
 
     it('should delete user successfully', async () => {
-        ;(UserService.getUserById as any).mockResolvedValue({
+        (UserService.getUserById as any).mockResolvedValue({
             users_id: 'user-uuid'
         })
         ;(UserService.deleteUserById as any).mockResolvedValue({
@@ -115,7 +115,7 @@ describe('UserController.deleteUsersController', () => {
     })
 
     it('should propagate error if user not found', async () => {
-        ;(UserService.getUserById as any)
+        (UserService.getUserById as any)
             .mockRejectedValue(new Error('User not found'))
 
         await expect(
