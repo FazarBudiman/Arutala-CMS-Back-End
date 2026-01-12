@@ -4,8 +4,8 @@ import {
   BadRequest,
   UnauthorizedError,
   ForbiddenError,
-  NotFoundError,
-  ValidationError
+  ValidationError,
+  ResourceNotFoundError
 } from "../error";
 
 describe("HttpError base class", () => {
@@ -65,17 +65,17 @@ describe("ForbiddenError", () => {
 
 describe("NotFoundError", () => {
   it("should format resource name", () => {
-    const error = new NotFoundError("User");
+    const error = new ResourceNotFoundError("User not found");
 
     expect(error.status).toBe(404);
-    expect(error.code).toBe("NOT_FOUND");
+    expect(error.code).toBe("RESOURCE_NOT_FOUND");
     expect(error.message).toBe("User not found");
   });
 
   it("should use default resource name", () => {
-    const error = new NotFoundError();
+    const error = new ResourceNotFoundError();
 
-    expect(error.message).toBe("Resource not found");
+    expect(error.message).toBe("Resource Not Found");
   });
 });
 

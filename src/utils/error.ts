@@ -27,9 +27,9 @@ export class ForbiddenError extends HttpError {
     }
 }
 
-export class NotFoundError extends HttpError {
-    constructor(resource = 'Resource') {
-        super(404, 'NOT_FOUND', `${resource} not found`)
+export class ResourceNotFoundError extends HttpError {
+    constructor(resource = 'Resource Not Found') {
+        super(404, 'RESOURCE_NOT_FOUND', `${resource}`)
     }
 }
 
