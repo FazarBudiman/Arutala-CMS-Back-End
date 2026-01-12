@@ -30,6 +30,7 @@ describe('AuthContoller.login', () => {
 
 describe('AuthController.refresh', () => {
     it('should return new access token when refresh token is valid', async () => {
+        vi.spyOn(AuthService, 'isRefreshTokenExist').mockResolvedValue(undefined);
         const deps = {
             refreshJwt: {verify: vi.fn().mockResolvedValue({sub: 1, role: 'admin'})},
             accessJwt: {sign: vi.fn().mockResolvedValue('newAccessToken')}

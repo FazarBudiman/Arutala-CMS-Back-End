@@ -29,6 +29,14 @@ abstract class AuthService {
         await pool.query(`INSERT INTO authentications VALUES ($1)`, [token])
     }
 
+    static isRefreshTokenExist = async (token: string) => {
+        const { rows } = await pool.query(`SELECT refresh_token FROM authentications WHERE refresh_token = $1`, [token])
+
+        if (rows.length === 0) {
+            throw new BadRequest('Invalid Refresh Token ')
+        }
+    }
+
     static deleteRefreshToken = async (token: AuthRefreshTokenProps) => {
         await pool.query(`DELETE from authentications WHERE refresh_token = $1`, [token.refreshToken])
     }

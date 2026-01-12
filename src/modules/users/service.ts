@@ -1,6 +1,6 @@
 import { pool } from "@api/db/pool";
 import { UserCreateProps } from "./model";
-import { BadRequest, NotFoundError } from "@api/utils/error";
+import { BadRequest, ResourceNotFoundError } from "@api/utils/error";
 import bcrypt from 'bcrypt'
 
 abstract class UserService {
@@ -62,7 +62,7 @@ abstract class UserService {
         }
 
         if (result.rows.length < 1) {
-                throw new NotFoundError('User not found')
+                throw new ResourceNotFoundError('User not found')
             } 
         
         return result.rows[0]
