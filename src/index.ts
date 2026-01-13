@@ -5,6 +5,7 @@ import { HttpError } from './utils/error'
 import { formatElysiaValidation } from './utils/helper'
 import { auth } from './modules/auth/route'
 import { users } from './modules/users/route'
+import { mentors } from './modules/mentors/route'
 
 
 export const app = new Elysia()
@@ -54,9 +55,10 @@ export const app = new Elysia()
         }
     })
     // .use(otel)
-    .use(messages)
     .use(auth)
     .use(users)
+    .use(messages)
+    .use(mentors)
     .get('/', () => 'Hello Elysia')
     .listen(Bun.env.PORT ?? 3001)
 

@@ -107,7 +107,7 @@ export async function up(pgm: MigrationBuilder): Promise<void> {
   pgm.createTable('authentications', {
     refresh_token: {
       type: 'text',
-      primaryKey: true
+      notNull: true
     }
   })
 }
