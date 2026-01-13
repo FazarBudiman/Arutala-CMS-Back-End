@@ -8,7 +8,7 @@ abstract class AuthService {
         const { rows } = await pool.query(
             `SELECT u.users_id, u.password_hash, r.roles_name FROM users u
                 JOIN roles r ON u.users_role_id = r.roles_id
-                WHERE username = $1`,
+                WHERE username = $1 `,
             [payload.username]
         )
 
