@@ -144,7 +144,7 @@ describe('UserService.deleteUserById', () => {
         const result = await UserService.deleteUserById('deleted-user-uuid')
 
         expect(pool.query).toHaveBeenCalledWith(
-            expect.stringContaining('DELETE FROM users'),
+            expect.stringContaining('UPDATE users SET is_deleted = true'),
             ['deleted-user-uuid']
         )
         expect(result).toEqual({ users_id: 'deleted-user-uuid' })
