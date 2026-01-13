@@ -3,7 +3,7 @@ import { UserCreateProps } from "./model";
 import { BadRequest, ResourceNotFoundError } from "@api/utils/error";
 import bcrypt from 'bcrypt'
 
-abstract class UserService {
+export class UserService {
     static addUser = async (payload: UserCreateProps, userWhoCreated: string) => {
         const passwordHash = bcrypt.hashSync(payload.password, 12);
 
@@ -79,5 +79,3 @@ abstract class UserService {
         return rows[0]
     }
 }
-
-export { UserService }

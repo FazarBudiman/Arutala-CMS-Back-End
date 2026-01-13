@@ -2,7 +2,7 @@ import { pool } from "@api/db/pool";
 import { MessageCreateProps } from "./model";
 import { BadRequest, ResourceNotFoundError,  } from "@api/utils/error";
 
-abstract class MessageService {
+export class MessageService {
     static addMessage = async (payload: MessageCreateProps) => {
         const { rows } = await pool.query(
             `INSERT INTO messages (sender_name, sender_email, organization_name, sender_phone, subject, message_body) 
@@ -54,5 +54,3 @@ abstract class MessageService {
         )
     }
 }
-
-export { MessageService }

@@ -8,10 +8,10 @@ import { users } from './modules/users/route'
 import { mentors } from './modules/mentors/route'
 
 
-export const app = new Elysia()
+const app = new Elysia()
     .use(
         cors({
-            origin: 'http://localhost:3000'
+            origin: '*'
         })
     )
     
@@ -60,12 +60,12 @@ export const app = new Elysia()
     .use(messages)
     .use(mentors)
     .get('/', () => 'Hello Elysia')
-    .listen(Bun.env.PORT ?? 3001)
+    // .listen(Bun.env.PORT ?? 3001)
 
 process.on('beforeExit', app.stop)
 
-export type app = typeof app
+export default app
 
-console.log(
-    `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`
-)
+// console.log(
+//     `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`
+// )
