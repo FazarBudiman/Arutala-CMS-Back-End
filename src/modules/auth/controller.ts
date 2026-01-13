@@ -41,8 +41,6 @@ export class AuthController {
             accessJwt: any
         }
     ) {
-        console.log("token payload:", token.refreshToken);
-        console.log("deps:", deps);
         await AuthService.isRefreshTokenExist(token.refreshToken)
         const payload = await deps.refreshJwt.verify(token.refreshToken)
 
