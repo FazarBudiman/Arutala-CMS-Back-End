@@ -45,7 +45,9 @@ abstract class UserService {
                 r.roles_name,
                 u.is_active
             FROM users u
-            JOIN roles r ON u.users_role_id = r.roles_id`
+            JOIN roles r ON u.users_role_id = r.roles_id
+            WHERE is_deleted = false
+            `
         )
         return { rows }
     }
@@ -54,7 +56,7 @@ abstract class UserService {
         let result
         try {
             result =  await pool.query(
-                `SELECT users_id FROM users WHERE users_id = $1`,
+                `SELECT users_id FROM users WHERE users_id = $1 AND is_deleted = false`,
                 [userId]
             )
         } catch {
@@ -71,7 +73,7 @@ abstract class UserService {
 
     static deleteUserById = async (userId: string) => {
         const { rows } = await pool.query(
-            `DELETE FROM users WHERE users_id = $1 RETURNING users_id`,
+            `UPDATE users SET is_deleted = true WHERE users_id = $1 RETURNING users_id`,
             [userId] 
         )
         return rows[0]

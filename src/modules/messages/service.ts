@@ -15,7 +15,7 @@ abstract class MessageService {
     static getMessages = async () => { 
         const { rows } = await pool.query(
             `SELECT messages_id, sender_name, sender_email, sender_phone, organization_name, status, subject, message_body, created_date 
-                FROM messages ORDER BY created_date DESC`
+                FROM messages WHERE is_deleted = false ORDER BY created_date DESC`
 
         )
         return rows
@@ -25,7 +25,7 @@ abstract class MessageService {
         let result
         try {
             result = await pool.query(
-                `SELECT messages_id FROM messages WHERE messages_id = $1`,
+                `SELECT messages_id FROM messages WHERE messages_id = $1 AND is_deleted = false`,
                 [id]
             )
         } catch  {
@@ -49,7 +49,7 @@ abstract class MessageService {
 
     static deleteMessage = async (id: string) => {
         await pool.query(
-            `DELETE FROM messages WHERE messages_id = $1`,
+            `UPDATE messages SET is_deleted = true WHERE messages_id = $1`,
             [id]
         )
     }

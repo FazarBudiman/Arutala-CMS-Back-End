@@ -56,6 +56,12 @@ export async function up(pgm: MigrationBuilder): Promise<void> {
       notNull: true,
       default: 'NEW'
     },
+    
+    is_deleted: {
+      type: 'boolean',
+      notNull: true,
+      default: false
+    },
 
     created_by: {
       type: 'uuid',
