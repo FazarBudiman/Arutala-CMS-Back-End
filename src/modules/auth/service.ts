@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt'
 import { pool } from "@api/db/pool";
 import { BadRequest } from "@api/utils/error";
 
-abstract class AuthService {
+export class AuthService {
     static verifyUserCredential = async (payload: AuthCreateprops) => {
         const { rows } = await pool.query(
             `SELECT u.users_id, u.password_hash, r.roles_name FROM users u
@@ -41,5 +41,3 @@ abstract class AuthService {
         await pool.query(`DELETE from authentications WHERE refresh_token = $1`, [token.refreshToken])
     }
 }
-
-export { AuthService }

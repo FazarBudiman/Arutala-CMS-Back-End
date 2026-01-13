@@ -3,7 +3,7 @@ import { MentorCreateProps, MentorUploadProps } from "./model";
 import { pool } from "@api/db/pool";
 import { BadRequest, ResourceNotFoundError } from "@api/utils/error";
 
-abstract class MentorService {
+export class MentorService {
     static uploadProfile = async (payload: MentorUploadProps) => {
         const urlProfile = await uploadToStorage(payload.profile, 'mentor')
         return urlProfile
@@ -65,6 +65,3 @@ abstract class MentorService {
         return rows[0]
     }
 }
-
-
-export { MentorService }
